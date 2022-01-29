@@ -1,0 +1,45 @@
+@mixin style-form {
+    @include style-display();
+    color: black;
+    justify-content: center;
+    align-items: center;
+}
+@mixin style-form-select {
+  @include style-display();
+  margin-top: 5%;
+  margin-bottom: 5%;
+  padding-left: 3%;
+}
+@mixin style-label {
+  border-left: 3px solid $color1;
+  padding: 2%;
+  padding-left: 5%;
+}
+@mixin style-select {
+  @include style-display();
+  margin-bottom: 9%;
+  margin-top: 3%;
+  border: 1px solid $color2;
+  background: white;
+  padding: 2%;
+  border-radius: $border-radius;
+  width: 100%;
+}
+@mixin style-form-name {
+  @include style-display();
+  padding: 2%;
+}
+@mixin style-name {
+  border: 1px solid $color2;
+  border-radius: $border-radius;
+  text-align: center;
+  padding: 1.5%;
+  margin-top: 2%;
+  margin-bottom: 2%;
+}
+@mixin style-display {
+  display: flex;
+  flex-direction: column;
+}
+
+  

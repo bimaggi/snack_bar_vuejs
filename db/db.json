@@ -1,0 +1,80 @@
+{
+    "ingredients": {
+      "breads": [
+        {
+          "id": 1,
+          "type": "Bun",
+          "vlr": 5
+        },
+        {
+          "id": 2,
+          "type": "Loaf",
+          "vlr": 5
+        },
+        {
+          "id": 3,
+          "type": "Roll",
+          "vlr": 5
+        }
+      ],
+      "meats": [
+        {
+          "id": 1,
+          "type": "Tenderloin",
+          "vlr": 5
+        },
+        {
+          "id": 2,
+          "type": "Striploin",
+          "vlr": 5
+        },
+        {
+          "id": 3,
+          "type": "knuckle",
+          "vlr": 5
+        }
+      ],
+      "optionals": [
+        {
+          "id": 1,
+          "type": "Onion rings",
+          "vlr": 5
+        },
+        {
+          "id": 2,
+          "type": "Barbecue",
+          "vlr": 5
+        },
+        {
+          "id": 3,
+          "type": "Bacon",
+          "vlr": 5
+        }
+      ],
+      "sideDishes": [
+        {
+          "id": 1,
+          "type": "Chips",
+          "vlr": 6
+        },
+        {
+          "id": 2,
+          "type": "Nuggets",
+          "vlr": 7
+        }
+      ],
+      "drinks": [
+        {
+          "id": 1,
+          "type": "Coke",
+          "vlr": 6
+        },
+        {
+          "id": 2,
+          "type": "Orange juice",
+          "vlr": 7
+        }
+      ]
+    },
+    "status": []
+  }
