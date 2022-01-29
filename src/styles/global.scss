@@ -1,0 +1,14 @@
+@import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@500');
+@import './variables.scss';
+@import './reset.scss';
+@import './mixins.scss';
+
+:root {
+    font-family: 'Montserrat', sans-serif;
+    color:$color-dark;
+    font-size: 1.1rem;
+}
+
+
+   
+  

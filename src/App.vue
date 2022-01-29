@@ -1,11 +1,21 @@
 <template>
-  <div id="nav">
-    <router-link to="/">Make your request</router-link> |
-    <router-link to="/request">Request</router-link>
+  <div id="app">
   </div>
-  <router-view/>
+  <snack-board/>
 </template>
 
+<script>
+import SnackBoard from './components/SnackBoard'
+
+export default {
+  components: {
+    SnackBoard,
+  },
+}
+</script>
+
 <style lang="scss">
+@import '@/styles/variables.scss';
+@import '@/styles/global.scss';
 
 </style>
