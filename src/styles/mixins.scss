@@ -1,24 +1,25 @@
 @mixin style-form {
     @include style-display();
-    color: black;
+    color: $color-dark;
     justify-content: center;
     align-items: center;
+    padding-top:2% 
 }
 @mixin style-form-select {
   @include style-display();
-  margin-top: 5%;
-  margin-bottom: 5%;
+  margin-bottom: 1%;
+  margin-top:.5%;
   padding-left: 3%;
+  width: 25%;
 }
 @mixin style-label {
   border-left: 3px solid $color1;
   padding: 2%;
   padding-left: 5%;
+  margin-bottom: 3%
 }
 @mixin style-select {
   @include style-display();
-  margin-bottom: 9%;
-  margin-top: 3%;
   border: 1px solid $color2;
   background: white;
   padding: 2%;

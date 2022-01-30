@@ -1,17 +1,19 @@
 <template>
-  <div class="home">
+  <div class="snackbar">
     <snack-banner/>
-    Monte seu lanche
+    <snack-form/>
   </div>
 </template>
 
 <script>
 import SnackBanner from '@/components/SnackBanner'
+import SnackForm from '@/components/SnackForm'
 
 export default {
   name: 'Home',
   components: {
     SnackBanner,
+    SnackForm,
   },
 }
 </script>
