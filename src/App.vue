@@ -17,6 +17,7 @@ export default {
 <style lang="scss">
 @import '@/styles/variables.scss';
 @import '@/styles/global.scss';
+
 #app{
   background-color: $color5;
 }
