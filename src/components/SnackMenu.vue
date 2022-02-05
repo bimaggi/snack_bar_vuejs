@@ -24,6 +24,7 @@ a {
   font-weight: bold;
   color: $color1;
   margin-right: 1%;
+  margin-left: 4%;
   text-decoration: none;
   font-size: 1.3rem;
 
@@ -33,10 +34,11 @@ a {
 }
 @media screen and (max-width: $mobile){
   .menu {
-    justify-content:space-around;
+    justify-content:space-between;
+    padding: 1rem;
   }
   a{
-    font-size: 1.1rem;
+    font-size: .9rem;
   }
 }
 </style>

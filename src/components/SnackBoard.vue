@@ -26,7 +26,5 @@ export default {
 <style lang="scss">
 .board {
   margin-top: 0;
-
 }
-
 </style>

@@ -33,7 +33,7 @@ export default {
   }
 @media screen and (max-width: $mobile){
   .footer__link{
-    font-size: .7rem;
+    font-size: .6rem;
   }
 }
 </style>

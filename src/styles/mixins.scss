@@ -1,9 +1,11 @@
 @mixin style-form {
     @include style-display();
+    @include justify();
     color: $color-dark;
-    justify-content: center;
-    align-items: center;
-    padding-top:2% 
+    padding-top:2% ;
+    @media screen and (max-width: $mobile){
+      width: 100% ;
+    }
 }
 @mixin style-form-select {
   @include style-display();
@@ -11,12 +13,17 @@
   margin-top:.5%;
   padding-left: 3%;
   width: 25%;
+  @media screen and (max-width: $mobile){
+    width: 80%;
+    margin-top: 5%;
+    padding-left: 0%;
+  }
 }
 @mixin style-label {
   border-left: 3px solid $color1;
   padding: 2%;
   padding-left: 5%;
-  margin-bottom: 3%
+  margin-bottom: 3%;
 }
 @mixin style-select {
   @include style-display();
@@ -25,6 +32,9 @@
   padding: 2%;
   border-radius: $border-radius;
   width: 100%;
+  @media screen and (max-width: $mobile){
+    padding: 3%;
+  }
 }
 @mixin style-form-name {
   @include style-display();
@@ -37,10 +47,24 @@
   padding: 1.5%;
   margin-top: 2%;
   margin-bottom: 2%;
+  @media screen and (max-width: $mobile){
+    padding: 3%;
+  }
+}
+@mixin style-btn {
+  width: 30%;
+  font-size: .9rem;
+  border-radius: $border-radius;
+  padding: 3%;
 }
 @mixin style-display {
   display: flex;
   flex-direction: column;
+}
+@mixin justify {
+  justify-content: center;
+  align-items: center;
+  
 }
 
   

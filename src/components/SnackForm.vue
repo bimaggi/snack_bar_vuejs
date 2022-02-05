@@ -1,26 +1,37 @@
 <template>
-  <form class="form">
+  <snack-modal v-if="modal === true"/>
+  <form v-else class="form">
     <div class="form__select">
       <label for="">Whats your name?</label>
       <input type="text"
         class="form__name"
-        v-model="name"
-      >
+        v-model="name">
     </div>
-    <snack-bread
-      @setBread="setBread"
+    <snack-items-of-burger
+      :items="breads"
+      @setItems="setBread"
+      :message="message.breads"
     />
-    <snack-meat
-      @setMeat="setMeat"
+     <snack-items-of-burger
+      :items="meats"
+      @setItems="setBread"
+      :message="message.meats"
     />
-    <snack-optional
-      @setOptional="setOptional"
+     <snack-items-of-burger
+      :items="optionals"
+      @setItems="setOptional"
+      :message="message.optionals"
     />
-    <snack-side-dish
-      @setSideDish="setSideDish"
+
+    <snack-drink-and-side-dish
+     :items="sideDishes"
+     @setItems="setSideDish"
+     :message="message.sideDishes"
     />
-    <snack-drink
-      @setDrink="setDrink"
+    <snack-drink-and-side-dish
+     :items="drinks"
+     @setItems="setDrink"
+     :message="message.drinks"
     />
     <div class="form__select">
       <button
@@ -34,29 +45,46 @@
   </form>
 </template>
 <script>
-import SnackBread from '@/components/SnackBread'
-import SnackMeat from '@/components/SnackMeat'
-import SnackOptional from '@/components/SnackOptional'
-import SnackSideDish from '@/components/SnackSideDish'
-import SnackDrink from '@/components/SnackDrink'
+import SnackModal from '@/components/SnackModal'
+import SnackItemsOfBurger from '@/components/SnackItemsOfBurger'
+import SnackDrinkAndSideDish from '@/components/SnackDrinkAndSideDish'
+import title from '@/enums/title'
+
+const {
+  BREADS,
+  MEATS,
+  OPTIONALS,
+  SIDEDISHES,
+  DRINKS,
+} = title
 
 export default {
   name: 'SnackForm',
   components: {
-    SnackBread,
-    SnackMeat,
-    SnackOptional,
-    SnackSideDish,
-    SnackDrink,
+    SnackModal,
+    SnackItemsOfBurger,
+    SnackDrinkAndSideDish,
   },
   data() {
     return {
       name: null,
+      breads: null,
+      optionals: null,
+      sideDishes: null,
+      drinks: null,
       requestBread: null,
       requestMeat: null,
       requestOptional: null,
       requestSideDish: null,
       requestDrink: null,
+      modal: false,
+      message: {
+        breads: BREADS,
+        meats: MEATS,
+        optionals: OPTIONALS,
+        sideDishes: SIDEDISHES,
+        drinks: DRINKS,
+      },
     }
   },
   mounted() {
@@ -66,7 +94,11 @@ export default {
     async getIngredients() {
       const req = await fetch('http://localhost:3000/ingredients')
       const data = await req.json()
-      console.log(data)
+      this.breads = data.breads
+      this.meats = data.meats
+      this.optionals = data.optionals
+      this.sideDishes = data.sideDishes
+      this.drinks = data.drinks
     },
     setBread(value) {
       this.requestBread = value
@@ -102,12 +134,6 @@ export default {
       })
       const res = await req.json()
       console.log(res)
-      this.name = ''
-      this.requestBread = ''
-      this.requestMeat = ''
-      this.requestOptional = ''
-      this.requestSideDish = ''
-      this.requestDrink = ''
     },
   },
 }
