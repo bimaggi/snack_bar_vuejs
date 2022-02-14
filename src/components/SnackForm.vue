@@ -1,4 +1,6 @@
 <template>
+<div class="container">
+  <snack-message :msg="msg" v-show="msg"/>
   <snack-modal v-if="modal === true"/>
   <form v-else class="form">
     <div class="form__select">
@@ -10,28 +12,28 @@
     <snack-items-of-burger
       :items="breads"
       @setItems="setBread"
-      :message="message.breads"
+      :titles="titles.breads"
     />
      <snack-items-of-burger
       :items="meats"
-      @setItems="setBread"
-      :message="message.meats"
+      @setItems="setMeat"
+      :titles="titles.meats"
     />
      <snack-items-of-burger
       :items="optionals"
       @setItems="setOptional"
-      :message="message.optionals"
+      :titles="titles.optionals"
     />
 
     <snack-drink-and-side-dish
      :items="sideDishes"
      @setItems="setSideDish"
-     :message="message.sideDishes"
+     :titles="titles.sideDishes"
     />
     <snack-drink-and-side-dish
      :items="drinks"
      @setItems="setDrink"
-     :message="message.drinks"
+     :titles="titles.drinks"
     />
     <div class="form__select">
       <button
@@ -43,11 +45,14 @@
       </button>
     </div>
   </form>
+  </div>
 </template>
 <script>
 import SnackModal from '@/components/SnackModal'
 import SnackItemsOfBurger from '@/components/SnackItemsOfBurger'
 import SnackDrinkAndSideDish from '@/components/SnackDrinkAndSideDish'
+import SnackMessage from '@/components/SnackMessage'
+
 import title from '@/enums/title'
 
 const {
@@ -64,6 +69,7 @@ export default {
     SnackModal,
     SnackItemsOfBurger,
     SnackDrinkAndSideDish,
+    SnackMessage,
   },
   data() {
     return {
@@ -72,13 +78,14 @@ export default {
       optionals: null,
       sideDishes: null,
       drinks: null,
+      msg: null,
       requestBread: null,
       requestMeat: null,
       requestOptional: null,
       requestSideDish: null,
       requestDrink: null,
       modal: false,
-      message: {
+      titles: {
         breads: BREADS,
         meats: MEATS,
         optionals: OPTIONALS,
@@ -124,7 +131,6 @@ export default {
         sideDish: this.requestSideDish,
         drink: this.requestDrink,
         status: 'Requested',
-        msg: null,
       }
       const requestJson = JSON.stringify(request)
       const req = await fetch('http://localhost:3000/request', {
@@ -133,7 +139,12 @@ export default {
         body: requestJson,
       })
       const res = await req.json()
+      this.msg = `Request Nº ${res.id} has been done successfully.`
       console.log(res)
+      setTimeout(() => {
+        this.msg = ''
+        this.modal = true
+      }, 3000)
     },
   },
 }
@@ -142,8 +153,9 @@ export default {
 @import '@/styles/variables.scss';
 @import '@/styles/mixins.scss';
 
-.form{
-  @include style-form
+.container{
+   @include style-form;
+   @include justify;
 }
 .form__name{
   @include style-name
