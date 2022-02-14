@@ -6,7 +6,6 @@ export default {
   SIDEDISHES: 'Side Dishes',
   DRINKS: 'Drinks',
   NUMBER: 'Nº',
-  MESSAGE: 'Message',
   ACTION: 'Action',
   STATUS: 'Status',
 }

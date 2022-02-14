@@ -1,6 +1,6 @@
 <template>
      <div class="form__select">
-      <label for="">{{message}}</label>
+      <label for="">{{titles}}</label>
       <select
         :key="index"
         v-model="requestItems"
@@ -30,7 +30,7 @@ export default {
     items: {
       type: Array,
     },
-    message: {
+    titles: {
       type: String,
     },
   },

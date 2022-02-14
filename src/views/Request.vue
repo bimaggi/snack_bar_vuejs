@@ -1,6 +1,6 @@
 <template>
   <div class="request">
-    <h1>Requests</h1>
+    <h1 class="request__title" >Requests</h1>
     <request-form/>
   </div>
 </template>
@@ -22,5 +22,15 @@ export default {
 .request{
   @include style-display;
   @include justify();
+  @media screen and (max-width: $mobile){
+    margin-top: 5%;
+    margin-bottom: 5%;
+  }
+}
+.request__title{
+  @media screen and (max-width: $mobile){
+    font-size: 1rem;
+    margin-bottom: 3%;
+  }
 }
 </style>
