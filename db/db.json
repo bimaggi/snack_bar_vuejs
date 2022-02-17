@@ -4,29 +4,29 @@
       {
         "id": 1,
         "type": "Bun",
-        "vlr": 5
+        "vlr": 1
       },
       {
         "id": 2,
         "type": "Loaf",
-        "vlr": 5
+        "vlr": 1
       },
       {
         "id": 3,
         "type": "Roll",
-        "vlr": 5
+        "vlr": 1
       }
     ],
     "meats": [
       {
         "id": 1,
         "type": "Tenderloin",
-        "vlr": 5
+        "vlr": 4
       },
       {
         "id": 2,
         "type": "Striploin",
-        "vlr": 5
+        "vlr": 6
       },
       {
         "id": 3,
@@ -38,41 +38,41 @@
       {
         "id": 1,
         "type": "Onion rings",
-        "vlr": 5
+        "vlr": 1
       },
       {
         "id": 2,
         "type": "Barbecue",
-        "vlr": 5
+        "vlr": 1
       },
       {
         "id": 3,
         "type": "Bacon",
-        "vlr": 5
+        "vlr": 1
       }
     ],
     "sideDishes": [
       {
         "id": 1,
         "type": "Chips",
-        "vlr": 6
+        "vlr": 2
       },
       {
         "id": 2,
         "type": "Nuggets",
-        "vlr": 7
+        "vlr": 3
       }
     ],
     "drinks": [
       {
         "id": 1,
         "type": "Coke",
-        "vlr": 6
+        "vlr": 2
       },
       {
         "id": 2,
         "type": "Orange juice",
-        "vlr": 7
+        "vlr": 3
       }
     ]
   },
@@ -90,16 +90,5 @@
       "type": "Done"
     }
   ],
-  "request": [
-    {
-      "name": "marcia ",
-      "bread": "Bun",
-      "meat": "Tenderloin",
-      "optional": "Onion rings",
-      "sideDish": "Chips",
-      "drink": "Coke",
-      "status": "Done",
-      "id": 1
-    }
-  ]
+  "request": []
 }

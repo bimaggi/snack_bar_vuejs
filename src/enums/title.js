@@ -8,4 +8,9 @@ export default {
   NUMBER: 'Nº',
   ACTION: 'Action',
   STATUS: 'Status',
+  MSG1: 'Card number',
+  MSG2: 'Name of the owner',
+  MSG3: 'Expiration date',
+  MSG4: 'Security code',
+  MSG5: 'Amount',
 }

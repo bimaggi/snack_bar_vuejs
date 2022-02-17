@@ -1,13 +1,18 @@
 <template>
 <div class="container">
-  <snack-message :msg="msg" v-show="msg"/>
-  <snack-modal v-if="modal === true"/>
+  <snack-message
+    :msg="msg" v-show="msg"
+  />
+  <snack-modal v-if="modal === true"
+    :vlrAmount="vlrAmount"
+  />
   <form v-else class="form">
     <div class="form__select">
       <label for="">Whats your name?</label>
       <input type="text"
         class="form__name"
-        v-model="name">
+        v-model="name"
+      >
     </div>
     <snack-items-of-burger
       :items="breads"
@@ -24,7 +29,6 @@
       @setItems="setOptional"
       :titles="titles.optionals"
     />
-
     <snack-drink-and-side-dish
      :items="sideDishes"
      @setItems="setSideDish"
@@ -52,7 +56,6 @@ import SnackModal from '@/components/SnackModal'
 import SnackItemsOfBurger from '@/components/SnackItemsOfBurger'
 import SnackDrinkAndSideDish from '@/components/SnackDrinkAndSideDish'
 import SnackMessage from '@/components/SnackMessage'
-
 import title from '@/enums/title'
 
 const {
@@ -85,6 +88,14 @@ export default {
       requestSideDish: null,
       requestDrink: null,
       modal: false,
+      vlrAmount: null,
+      vlr: {
+        bread: null,
+        meat: null,
+        optional: null,
+        sideDish: null,
+        drink: null,
+      },
       titles: {
         breads: BREADS,
         meats: MEATS,
@@ -108,19 +119,24 @@ export default {
       this.drinks = data.drinks
     },
     setBread(value) {
-      this.requestBread = value
+      this.requestBread = value.type
+      this.vlr.bread = value.vlr
     },
     setMeat(value) {
-      this.requestMeat = value
+      this.requestMeat = value.type
+      this.vlr.meat = value.vlr
     },
     setOptional(value) {
-      this.requestOptional = value
+      this.requestOptional = value.type
+      this.vlr.optional = value.vlr
     },
     setSideDish(value) {
-      this.requestSideDish = value
+      this.requestSideDish = value.type
+      this.vlr.sideDish = value.vlr
     },
     setDrink(value) {
-      this.requestDrink = value
+      this.requestDrink = value.type
+      this.vlr.drink = value.vlr
     },
     async saveMyRequest() {
       const request = {
@@ -132,26 +148,42 @@ export default {
         drink: this.requestDrink,
         status: 'Requested',
       }
-      const requestJson = JSON.stringify(request)
-      const req = await fetch('http://localhost:3000/request', {
-        method: 'POST',
-        headers: { 'Content-Type': 'application/json' },
-        body: requestJson,
-      })
-      const res = await req.json()
-      this.msg = `Request Nº ${res.id} has been done successfully.`
-      console.log(res)
-      setTimeout(() => {
-        this.msg = ''
-        this.modal = true
-      }, 3000)
+      if (!this.name || !this.requestBread || !this.requestMeat) {
+        this.msg = `Fill in the fields * Name, *${this.titles.breads}, *${this.titles.meats}`
+        setTimeout(() => {
+          this.msg = ''
+        }, 5000)
+      } else {
+        const requestJson = JSON.stringify(request)
+        const req = await fetch('http://localhost:3000/request', {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/json' },
+          body: requestJson,
+        })
+        const res = await req.json()
+        this.msg = `Request Nº ${res.id} has been done successfully.`
+        const amount = [
+          this.vlr.bread,
+          this.vlr.meat,
+          this.vlr.optional,
+          this.vlr.sideDish,
+          this.vlr.drink,
+        ]
+        this.vlrAmount = amount.map((item) => item).reduce((prev, curr) => prev + curr, 0)
+        console.log(res, this.vlrAmount)
+        setTimeout(() => {
+          this.msg = ''
+          this.modal = true
+        }, 3000)
+      }
     },
   },
 }
 </script>
+
 <style lang="scss">
-@import '@/styles/variables.scss';
-@import '@/styles/mixins.scss';
+  @import '@/styles/variables.scss';
+  @import '@/styles/mixins.scss';
 
 .container{
    @include style-form;
