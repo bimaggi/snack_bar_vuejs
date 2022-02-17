@@ -10,9 +10,9 @@
         <option
           v-for=" i in items"
           :key="i.id"
-          :value="i.type"
+          :value="i"
         >
-          {{i.type}}
+        {{i.type}}
         </option>
       </select>
     </div>

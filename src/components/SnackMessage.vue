@@ -25,6 +25,10 @@ export default {
   display: flex;
   margin-bottom: 2%;
   justify-content: flex-end;
+    @media screen and (max-width: $mobile){
+    width: 75%;
+    font-size: .8rem;
+  }
  }
  .message__title{
    text-align: center;

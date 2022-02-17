@@ -5,10 +5,10 @@
         :key="i.id"
       >
         <input type="radio"
-          name="item"
+          :name="i.type"
           id="item"
           v-model="requestItems"
-          :value="i.type"
+          :value="i"
           class="radio"
           @change="setItems(requestItems)"
         >
