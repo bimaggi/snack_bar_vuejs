@@ -4,7 +4,8 @@
     :msg="msg" v-show="msg"
   />
   <snack-modal v-if="modal === true"
-    :vlrAmount="vlrAmount"
+    :priceAmount="priceAmount"
+    @close="close"
   />
   <form v-else class="form">
     <div class="form__select">
@@ -88,8 +89,8 @@ export default {
       requestSideDish: null,
       requestDrink: null,
       modal: false,
-      vlrAmount: null,
-      vlr: {
+      priceAmount: null,
+      price: {
         bread: null,
         meat: null,
         optional: null,
@@ -120,23 +121,23 @@ export default {
     },
     setBread(value) {
       this.requestBread = value.type
-      this.vlr.bread = value.vlr
+      this.price.bread = value.price
     },
     setMeat(value) {
       this.requestMeat = value.type
-      this.vlr.meat = value.vlr
+      this.price.meat = value.price
     },
     setOptional(value) {
       this.requestOptional = value.type
-      this.vlr.optional = value.vlr
+      this.price.optional = value.price
     },
     setSideDish(value) {
       this.requestSideDish = value.type
-      this.vlr.sideDish = value.vlr
+      this.price.sideDish = value.price
     },
     setDrink(value) {
       this.requestDrink = value.type
-      this.vlr.drink = value.vlr
+      this.price.drink = value.price
     },
     async saveMyRequest() {
       const request = {
@@ -163,19 +164,25 @@ export default {
         const res = await req.json()
         this.msg = `Request Nº ${res.id} has been done successfully.`
         const amount = [
-          this.vlr.bread,
-          this.vlr.meat,
-          this.vlr.optional,
-          this.vlr.sideDish,
-          this.vlr.drink,
+          this.price.bread,
+          this.price.meat,
+          this.price.optional,
+          this.price.sideDish,
+          this.price.drink,
         ]
-        this.vlrAmount = amount.map((item) => item).reduce((prev, curr) => prev + curr, 0)
-        console.log(res, this.vlrAmount)
+        this.priceAmount = amount.map((item) => item).reduce((prev, curr) => prev + curr, 0)
+        console.log(res, this.priceAmount)
         setTimeout(() => {
           this.msg = ''
           this.modal = true
+          this.name = ''
         }, 3000)
       }
+    },
+    close(closeModal) {
+      setTimeout(() => {
+        this.modal = closeModal
+      }, 4000)
     },
   },
 }

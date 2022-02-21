@@ -5,8 +5,14 @@
         @click.self="close"
       >
       <article class="modal_container">
-      <header>
-        <h1 class="modal__title">Fill in the fields</h1>
+      <header class="modal__header">
+          <h1 class="modal__title">Fill in the fields</h1>
+         <div
+           v-show="msg === true"
+           class="modal__msg"
+         >
+           {{errorMsg}}
+         </div>
       </header>
       <main>
         <form  class="form">
@@ -16,6 +22,7 @@
               class="select"
               v-model="card"
               v-mask="'#### #### #### ####'"
+              minlength="19"
             >
           </div>
           <div class="form__select">
@@ -45,8 +52,8 @@
             <label>{{message[4].msg5}}</label>
             <input
               class="select"
-              :value="`U$ ${vlrAmount}`"
-              :disabled="vlrAmount"
+              :value="`U$ ${priceAmount}`"
+              :disabled="priceAmount"
             >
           </div>
           <button
@@ -79,13 +86,22 @@ const {
 export default {
   directives: { mask },
   props: {
-    vlrAmount: {
+    priceAmount: {
       type: String,
+    },
+    modal: {
+      type: Boolean,
     },
   },
   data() {
     return {
       date: null,
+      name: null,
+      card: null,
+      securityCode: null,
+      msg: false,
+      errorMsg: null,
+      closeModal: false,
       message: [
         { msg1: MSG1 },
         { msg2: MSG2 },
@@ -99,7 +115,28 @@ export default {
     confirm() {
       const newDate = this.getCardDate()
       const isDateValid = isAfter(new Date(newDate), new Date())
-      console.log('aqui o result', newDate, isDateValid)
+      if (
+        !this.card
+        || !this.name
+        || !this.date
+        || !this.securityCode
+        || this.card.length < 19
+      ) {
+        this.msg = true
+        this.errorMsg = 'Fill in all fields'
+      } else if (isDateValid === false) {
+        this.msg = true
+        this.errorMsg = 'Check the card expiration date'
+      } else {
+        this.msg = true
+        this.errorMsg = 'Purchase made'
+      }
+      this.setCloseModal()
+    },
+    setCloseModal() {
+      if (this.errorMsg === 'Purchase made') {
+        this.$emit('close', this.closeModal)
+      }
     },
     getCardDate() {
       const [month, year] = this.date.split('/')
@@ -136,14 +173,34 @@ export default {
   display: flex;
   flex-direction: column;
   align-items: center;
-  width: 40rem;
+  width: 45rem;
   position: relative;
 }
 .modal__title{
-  margin-top:5% ;
+  margin-top:3% ;
+}
+.modal__header {
+  text-align: center;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+.modal__msg {
+  border: 1px solid $color3;
+  border-radius: 5px;
+  padding: 8px;
+  display: flex;
+  justify-content: flex-end;
+  margin-top: 2%;
+    @media screen and (max-width: $mobile){
+    width: 75%;
+    font-size: .8rem;
+  }
 }
 .form__select {
   width: 100%;
+  margin-top: 3%;
 }
 .button {
   margin-top: 10%;
