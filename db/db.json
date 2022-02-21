@@ -4,75 +4,75 @@
       {
         "id": 1,
         "type": "Bun",
-        "vlr": 1
+        "price": 1
       },
       {
         "id": 2,
         "type": "Loaf",
-        "vlr": 1
+        "price": 1
       },
       {
         "id": 3,
         "type": "Roll",
-        "vlr": 1
+        "price": 1
       }
     ],
     "meats": [
       {
         "id": 1,
         "type": "Tenderloin",
-        "vlr": 4
+        "price": 4
       },
       {
         "id": 2,
         "type": "Striploin",
-        "vlr": 6
+        "price": 6
       },
       {
         "id": 3,
         "type": "knuckle",
-        "vlr": 5
+        "price": 5
       }
     ],
     "optionals": [
       {
         "id": 1,
         "type": "Onion rings",
-        "vlr": 1
+        "price": 1
       },
       {
         "id": 2,
         "type": "Barbecue",
-        "vlr": 1
+        "price": 1
       },
       {
         "id": 3,
         "type": "Bacon",
-        "vlr": 1
+        "price": 1
       }
     ],
     "sideDishes": [
       {
         "id": 1,
         "type": "Chips",
-        "vlr": 2
+        "price": 2
       },
       {
         "id": 2,
         "type": "Nuggets",
-        "vlr": 3
+        "price": 3
       }
     ],
     "drinks": [
       {
         "id": 1,
         "type": "Coke",
-        "vlr": 2
+        "price": 2
       },
       {
         "id": 2,
         "type": "Orange juice",
-        "vlr": 3
+        "price": 3
       }
     ]
   },
@@ -90,5 +90,16 @@
       "type": "Done"
     }
   ],
-  "request": []
+  "request": [
+    {
+      "name": "Marcia",
+      "bread": "Loaf",
+      "meat": "Striploin",
+      "optional": "Onion rings",
+      "sideDish": "Chips",
+      "drink": "Coke",
+      "status": "Requested",
+      "id": 1
+    }
+  ]
 }
